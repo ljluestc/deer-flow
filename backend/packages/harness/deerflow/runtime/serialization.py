@@ -55,12 +55,23 @@ def serialize_channel_values(channel_values: dict[str, Any]) -> dict[str, Any]:
         result[key] = serialize_lc_object(value)
     return result
 
+def _normalize_messages_metadata(metadata: Any) -> dict[str, Any]:
+    """Normalize messages metadata to include a stable ``langgraph_node``."""
+    normalized_metadata = dict(metadata) if isinstance(metadata, dict) else {}
+    langgraph_node = normalized_metadata.get("langgraph_node")
+    if not isinstance(langgraph_node, str) or not langgraph_node.strip() or langgraph_node.strip().lower() == "unknown":
+        normalized_metadata["langgraph_node"] = "planner"
+    return normalized_metadata
+
 
 def serialize_messages_tuple(obj: Any) -> Any:
     """Serialize a messages-mode tuple ``(chunk, metadata)``."""
     if isinstance(obj, tuple) and len(obj) == 2:
         chunk, metadata = obj
-        return [serialize_lc_object(chunk), metadata if isinstance(metadata, dict) else {}]
+        normalized_metadata = _normalize_messages_metadata(metadata)
+        # Keep backward compatibility with legacy /api/chat/stream consumers that
+        # expect an agent node name and break on "unknown"/missing values.
+        return [serialize_lc_object(chunk), normalized_metadata]
     return serialize_lc_object(obj)
 
 

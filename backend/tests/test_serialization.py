@@ -127,7 +127,20 @@ def test_serialize_messages_tuple_non_dict_metadata():
     from deerflow.runtime.serialization import serialize_messages_tuple
 
     result = serialize_messages_tuple((_FakePydanticV2(), "not-a-dict"))
-    assert result == [{"key": "v2"}, {}]
+    assert result == [{"key": "v2"}, {"langgraph_node": "planner"}]
+
+
+def test_serialize_messages_tuple_missing_langgraph_node_fallback():
+    from deerflow.runtime.serialization import serialize_messages_tuple
+
+    result = serialize_messages_tuple((_FakePydanticV2(), {"foo": "bar"}))
+    assert result == [{"key": "v2"}, {"foo": "bar", "langgraph_node": "planner"}]
+
+def test_serialize_messages_tuple_unknown_langgraph_node_fallback():
+    from deerflow.runtime.serialization import serialize_messages_tuple
+
+    result = serialize_messages_tuple((_FakePydanticV2(), {"foo": "bar", "langgraph_node": " UNKNOWN "}))
+    assert result == [{"key": "v2"}, {"foo": "bar", "langgraph_node": "planner"}]
 
 
 def test_serialize_messages_tuple_fallback():
@@ -142,7 +155,7 @@ def test_serialize_dispatcher_messages_mode():
 
     chunk = _FakePydanticV2()
     result = serialize((chunk, {"node": "x"}), mode="messages")
-    assert result == [{"key": "v2"}, {"node": "x"}]
+    assert result == [{"key": "v2"}, {"node": "x", "langgraph_node": "planner"}]
 
 
 def test_serialize_dispatcher_values_mode():

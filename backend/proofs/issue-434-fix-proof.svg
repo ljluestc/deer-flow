@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
+  <rect width="1400" height="760" fill="#0b1020"/>
+  <rect x="24" y="24" width="1352" height="712" rx="14" fill="#111827" stroke="#334155" stroke-width="2"/>
+  <text x="48" y="68" fill="#22d3ee" font-family="monospace" font-size="26">Issue #434 Fix Proof (local test run)</text>
+  <text x="48" y="106" fill="#94a3b8" font-family="monospace" font-size="20">Command:</text>
+  <text x="48" y="138" fill="#e2e8f0" font-family="monospace" font-size="20">PYTHONPATH=/home/calelin/dev/deer-flow/backend:/home/calelin/dev/deer-flow/backend/packages/harness \</text>
+  <text x="48" y="168" fill="#e2e8f0" font-family="monospace" font-size="20">uv run --directory /home/calelin/dev/deer-flow/backend pytest tests/test_serialization.py tests/test_gateway_services.py tests/test_sse_format.py</text>
+  <text x="48" y="214" fill="#94a3b8" font-family="monospace" font-size="20">Result:</text>
+  <text x="48" y="248" fill="#a7f3d0" font-family="monospace" font-size="22">tests/test_serialization.py ...................                                                   [ 39%]</text>
+  <text x="48" y="282" fill="#a7f3d0" font-family="monospace" font-size="22">tests/test_gateway_services.py ..........................                                         [ 93%]</text>
+  <text x="48" y="316" fill="#a7f3d0" font-family="monospace" font-size="22">tests/test_sse_format.py ...                                                                      [100%]</text>
+  <text x="48" y="366" fill="#86efac" font-family="monospace" font-size="30">48 passed in 0.40s</text>
+  <text x="48" y="414" fill="#cbd5e1" font-family="monospace" font-size="20">Validation target: langgraph_node fallback to planner for missing/unknown metadata</text>
+  <text x="48" y="458" fill="#94a3b8" font-family="monospace" font-size="18">Captured locally for PR verification evidence.</text>
+  <text x="48" y="490" fill="#64748b" font-family="monospace" font-size="16">File: backend/proofs/issue-434-fix-proof.svg</text>
+</svg>
