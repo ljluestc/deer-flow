@@ -1,16 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
-  <rect width="1400" height="760" fill="#0b1020"/>
-  <rect x="24" y="24" width="1352" height="712" rx="14" fill="#111827" stroke="#334155" stroke-width="2"/>
-  <text x="48" y="68" fill="#22d3ee" font-family="monospace" font-size="26">Issue #434 Fix Proof (local test run)</text>
-  <text x="48" y="106" fill="#94a3b8" font-family="monospace" font-size="20">Command:</text>
-  <text x="48" y="138" fill="#e2e8f0" font-family="monospace" font-size="20">PYTHONPATH=/home/calelin/dev/deer-flow/backend:/home/calelin/dev/deer-flow/backend/packages/harness \</text>
-  <text x="48" y="168" fill="#e2e8f0" font-family="monospace" font-size="20">uv run --directory /home/calelin/dev/deer-flow/backend pytest tests/test_serialization.py tests/test_gateway_services.py tests/test_sse_format.py</text>
-  <text x="48" y="214" fill="#94a3b8" font-family="monospace" font-size="20">Result:</text>
-  <text x="48" y="248" fill="#a7f3d0" font-family="monospace" font-size="22">tests/test_serialization.py ...................                                                   [ 39%]</text>
-  <text x="48" y="282" fill="#a7f3d0" font-family="monospace" font-size="22">tests/test_gateway_services.py ..........................                                         [ 93%]</text>
-  <text x="48" y="316" fill="#a7f3d0" font-family="monospace" font-size="22">tests/test_sse_format.py ...                                                                      [100%]</text>
-  <text x="48" y="366" fill="#86efac" font-family="monospace" font-size="30">48 passed in 0.40s</text>
-  <text x="48" y="414" fill="#cbd5e1" font-family="monospace" font-size="20">Validation target: langgraph_node fallback to planner for missing/unknown metadata</text>
-  <text x="48" y="458" fill="#94a3b8" font-family="monospace" font-size="18">Captured locally for PR verification evidence.</text>
-  <text x="48" y="490" fill="#64748b" font-family="monospace" font-size="16">File: backend/proofs/issue-434-fix-proof.svg</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="860" viewBox="0 0 1560 860">
+  <rect width="1560" height="860" fill="#0b1020"/>
+  <rect x="24" y="24" width="1512" height="812" rx="14" fill="#111827" stroke="#334155" stroke-width="2"/>
+  <text x="48" y="68" fill="#22d3ee" font-family="monospace" font-size="28">Issue #434 Chat Stream Proof (runtime output, not pytest)</text>
+  <text x="48" y="112" fill="#94a3b8" font-family="monospace" font-size="20">Command:</text>
+  <text x="48" y="144" fill="#e2e8f0" font-family="monospace" font-size="19">PYTHONPATH=/home/calelin/dev/deer-flow/backend:/home/calelin/dev/deer-flow/backend/packages/harness uv run --directory /home/calelin/dev/deer-flow/backend python - &lt;&lt;'PY'</text>
+  <text x="48" y="174" fill="#e2e8f0" font-family="monospace" font-size="19">from deerflow.runtime.serialization import serialize</text>
+  <text x="48" y="204" fill="#e2e8f0" font-family="monospace" font-size="19">from app.gateway.services import format_sse</text>
+  <text x="48" y="234" fill="#e2e8f0" font-family="monospace" font-size="19">chunk = ({"type":"AIMessageChunk","content":"hello","id":"ai-1"}, {"langgraph_node":" UNKNOWN "})</text>
+  <text x="48" y="264" fill="#e2e8f0" font-family="monospace" font-size="19">payload = serialize(chunk, mode="messages")</text>
+  <text x="48" y="294" fill="#e2e8f0" font-family="monospace" font-size="19">print(payload)</text>
+  <text x="48" y="324" fill="#e2e8f0" font-family="monospace" font-size="19">print(format_sse("messages", payload))</text>
+  <text x="48" y="354" fill="#e2e8f0" font-family="monospace" font-size="19">PY</text>
+  <text x="48" y="404" fill="#94a3b8" font-family="monospace" font-size="20">Actual runtime output:</text>
+  <text x="48" y="438" fill="#a7f3d0" font-family="monospace" font-size="21">[{'type': 'AIMessageChunk', 'content': 'hello', 'id': 'ai-1'}, {'langgraph_node': 'planner'}]</text>
+  <text x="48" y="472" fill="#a7f3d0" font-family="monospace" font-size="21">event: messages</text>
+  <text x="48" y="506" fill="#86efac" font-family="monospace" font-size="21">data: [{"type": "AIMessageChunk", "content": "hello", "id": "ai-1"}, {"langgraph_node": "planner"}]</text>
+  <text x="48" y="558" fill="#cbd5e1" font-family="monospace" font-size="20">Proof point: input metadata used langgraph_node=" UNKNOWN ", output SSE frame is normalized to "planner".</text>
+  <text x="48" y="600" fill="#cbd5e1" font-family="monospace" font-size="20">This is the chat stream serialization path consumed by UI stream handling.</text>
+  <text x="48" y="650" fill="#94a3b8" font-family="monospace" font-size="18">Captured locally as runtime evidence for bytedance/deer-flow issue #434.</text>
+  <text x="48" y="682" fill="#64748b" font-family="monospace" font-size="16">File: backend/proofs/issue-434-fix-proof.svg</text>
 </svg>
